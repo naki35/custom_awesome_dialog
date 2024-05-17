@@ -2,6 +2,7 @@ library awesome_dialog;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pointer_interceptor/pointer_interceptor.dart';
 
 import 'src/animated_button.dart';
 import 'src/anims/anims.dart';
@@ -21,6 +22,7 @@ enum DialogType {
   QUESTION,
   NO_HEADER
 }
+
 enum AnimType { SCALE, LEFTSLIDE, RIGHSLIDE, BOTTOMSLIDE, TOPSLIDE }
 
 enum DismissType {
@@ -245,26 +247,31 @@ class AwesomeDialog {
           }
           switch (animType) {
             case AnimType.SCALE:
-              return ScaleFade(
-                scale: 0.1,
-                curve: Curves.fastLinearToSlowEaseIn,
-                child: _buildDialog,
+              return PointerInterceptor(
+                child: ScaleFade(
+                  scale: 0.1,
+                  curve: Curves.fastLinearToSlowEaseIn,
+                  child: _buildDialog,
+                ),
               );
 
             case AnimType.LEFTSLIDE:
-              return FadeIn(from: SlideFrom.LEFT, child: _buildDialog);
+              return PointerInterceptor(
+                  child: FadeIn(from: SlideFrom.LEFT, child: _buildDialog));
 
             case AnimType.RIGHSLIDE:
-              return FadeIn(child: _buildDialog);
+              return PointerInterceptor(child: FadeIn(child: _buildDialog));
 
             case AnimType.BOTTOMSLIDE:
-              return FadeIn(from: SlideFrom.BOTTOM, child: _buildDialog);
+              return PointerInterceptor(
+                  child: FadeIn(from: SlideFrom.BOTTOM, child: _buildDialog));
 
             case AnimType.TOPSLIDE:
-              return FadeIn(from: SlideFrom.TOP, child: _buildDialog);
+              return PointerInterceptor(
+                  child: FadeIn(from: SlideFrom.TOP, child: _buildDialog));
 
             default:
-              return _buildDialog;
+              return PointerInterceptor(child: _buildDialog);
           }
         },
       )..then(

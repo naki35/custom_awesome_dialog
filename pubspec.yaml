@@ -10,8 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  simple_animations: ^4.0.1
-  flare_flutter: ^3.0.2
+  simple_animations: 4.0.1
+  flare_flutter: 3.0.2
+  pointer_interceptor: 0.9.3+5
 
 dev_dependencies:
   flutter_test:
