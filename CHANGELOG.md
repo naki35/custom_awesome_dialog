@@ -1,3 +1,29 @@
+## [3.2.1] - 30/04/2024
+
+* Upgrade dependencies.
+## [3.2.0] - 02/01/2024
+
+* Upgrade dependencies.
+* Remove deprecated enum types.
+
+## [3.1.0] - 24/05/2023
+
+* Upgrade dependencies. 
+## [3.0.2] - 23/09/2022
+
+* Added Question Type header again.
+## [3.0.1] - 13/09/2022
+
+* Added transitionAnimationDuration this default value of 300 ms.
+* Added reverseBtnOrder to invert btnbOk and btnCancel Order.
+## [3.0.0] - 6/09/2022
+
+* Remove Flare Dependency in favor of new Rive runtime to render header animation.
+* Remove Simple animation dependency in favor of native animations.
+* Deprecate all uppercase Enums in favor of effective dart new ones.
+* [Breaking] Temporary remove question type header for being incompatible with rive.
+* [Breaking] Change typo in 'onDismissCallback' and 'alignment' props.
+
 ## [2.2.1] - 1/05/2022
 
 * Fix issue #103 dismissOnTouchOutside does not work when dismissOnBackKeyPress is false.

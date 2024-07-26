@@ -1,8 +1,24 @@
 import 'package:flutter/material.dart';
 
+///Main button with press animation effect base on elevated button from flutter
+///with 0 elevation
 class AnimatedButton extends StatefulWidget {
+  ///Constructor
+  const AnimatedButton({
+    required this.pressEvent,
+    Key? key,
+    this.text,
+    this.icon,
+    this.color,
+    this.height,
+    this.isFixedHeight = true,
+    this.width = double.infinity,
+    this.borderRadius,
+    this.buttonTextStyle,
+  }) : super(key: key);
+
   /// Function to execute when button is pressed
-  final Function() pressEvent;
+  final void Function() pressEvent;
 
   /// Text of the [AnimatedButton]
   final String? text;
@@ -29,19 +45,6 @@ class AnimatedButton extends StatefulWidget {
 
   /// Textstyle to use for the text of the [AnimatedButton]
   final TextStyle? buttonTextStyle;
-
-  const AnimatedButton({
-    Key? key,
-    required this.pressEvent,
-    this.text,
-    this.icon,
-    this.color,
-    this.height,
-    this.isFixedHeight = true,
-    this.width = double.infinity,
-    this.borderRadius,
-    this.buttonTextStyle,
-  }) : super(key: key);
 
   @override
   State<AnimatedButton> createState() => _AnimatedButtonState();
@@ -88,7 +91,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
   }
 
   Future<void> _onTap() async {
-    _animationController.forward();
+    await _animationController.forward();
     //Delayed added in purpose to keep same animation behavior as previous version when dialog was closed while animation was still playing
     await Future<void>.delayed(
       const Duration(milliseconds: _forwardDurationNumber ~/ 2),
@@ -110,7 +113,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             elevation: 0,
-            primary: widget.color,
+            backgroundColor: widget.color,
             shape: RoundedRectangleBorder(
               borderRadius: widget.borderRadius ??
                   const BorderRadius.all(
@@ -124,7 +127,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
             children: <Widget>[
               if (widget.icon != null) ...<Widget>[
                 Padding(
-                  padding: const EdgeInsets.only(left: 4.0),
+                  padding: const EdgeInsets.only(left: 4),
                   child: Icon(
                     widget.icon,
                     color: Colors.white,
@@ -135,16 +138,18 @@ class _AnimatedButtonState extends State<AnimatedButton>
                 ),
               ],
               Flexible(
-                child: Text(
-                  '${widget.text}',
-                  // maxLines: 1,
-                  textAlign: TextAlign.center,
-                  style: widget.buttonTextStyle ??
-                      const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 14,
-                      ),
+                child: FittedBox(
+                  child: Text(
+                    '${widget.text}',
+                    // maxLines: 1,
+                    textAlign: TextAlign.center,
+                    style: widget.buttonTextStyle ??
+                        const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 14,
+                        ),
+                  ),
                 ),
               ),
             ],
