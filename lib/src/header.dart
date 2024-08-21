@@ -1,5 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:awesome_dialog/src/anims/rive_anim.dart';
+import 'package:awesome_dialog/src/anims/flare_anim.dart';
 import 'package:flutter/material.dart';
 
 ///Header of the [AwesomeDialog]
@@ -21,35 +21,41 @@ class AwesomeDialogHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (dialogType) {
       case DialogType.info:
-        return RiveAssetAnimation(
-          assetPath: 'packages/awesome_dialog/assets/rive/info.riv',
-          animName: loop ? 'appear_loop' : 'appear',
+        return const FlareAssetAnimation(
+          assetPath: 'packages/awesome_dialog/assets/flare/info2.flr',
+          fit: BoxFit.cover,
+          animName: 'appear',
         );
       case DialogType.infoReverse:
-        return RiveAssetAnimation(
-          assetPath: 'packages/awesome_dialog/assets/rive/info_reverse.riv',
-          animName: loop ? 'appear_loop' : 'appear',
+        return const FlareAssetAnimation(
+          assetPath: 'packages/awesome_dialog/assets/flare/info.flr',
+          fit: BoxFit.cover,
+          animName: 'appear',
         );
 
       case DialogType.question:
-        return RiveAssetAnimation(
-          assetPath: 'packages/awesome_dialog/assets/rive/question.riv',
-          animName: loop ? 'appear_loop' : 'appear',
+        return const FlareAssetAnimation(
+          assetPath: 'packages/awesome_dialog/assets/flare/question.flr',
+          fit: BoxFit.cover,
+          animName: 'anim',
         );
       case DialogType.warning:
-        return RiveAssetAnimation(
-          assetPath: 'packages/awesome_dialog/assets/rive/warning.riv',
-          animName: loop ? 'appear_loop' : 'appear',
+        return const FlareAssetAnimation(
+          assetPath: 'packages/awesome_dialog/assets/flare/warning.flr',
+          fit: BoxFit.cover,
+          animName: 'appear',
         );
       case DialogType.error:
-        return RiveAssetAnimation(
-          assetPath: 'packages/awesome_dialog/assets/rive/error.riv',
-          animName: loop ? 'appear_loop' : 'appear',
+        return const FlareAssetAnimation(
+          assetPath: 'packages/awesome_dialog/assets/flare/error.flr',
+          fit: BoxFit.fill,
+          animName: 'Error',
         );
       case DialogType.success:
-        return RiveAssetAnimation(
-          assetPath: 'packages/awesome_dialog/assets/rive/success.riv',
-          animName: loop ? 'appear_loop' : 'appear',
+        return const FlareAssetAnimation(
+          assetPath: 'packages/awesome_dialog/assets/flare/success.flr',
+          fit: BoxFit.fill,
+          animName: 'Untitled',
         );
       case DialogType.noHeader:
         return const SizedBox.shrink();

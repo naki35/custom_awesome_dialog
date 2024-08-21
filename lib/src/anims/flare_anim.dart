@@ -1,11 +1,12 @@
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
-import 'package:rive/rive.dart';
 
 ///RiveRuntimeRender
-class RiveAssetAnimation extends StatefulWidget {
+class FlareAssetAnimation extends StatefulWidget {
   ///Constructor
-  const RiveAssetAnimation({
+  const FlareAssetAnimation({
     required this.assetPath,
+    required this.fit,
     required this.animName,
     Key? key,
   }) : super(key: key);
@@ -13,28 +14,27 @@ class RiveAssetAnimation extends StatefulWidget {
   ///Path of the .riv assets file
   final String assetPath;
 
+  ///Fit of the animation
+  final BoxFit fit;
+
   ///Name od the animation to load
   final String animName;
   @override
-  State<RiveAssetAnimation> createState() => _RiveAnimationState();
+  State<FlareAssetAnimation> createState() => _FlareAnimationState();
 }
 
-class _RiveAnimationState extends State<RiveAssetAnimation> {
-  // Controller for playback
-  late RiveAnimationController<dynamic> _controller;
-
+class _FlareAnimationState extends State<FlareAssetAnimation> {
   @override
   void initState() {
     super.initState();
-
-    _controller = SimpleAnimation(widget.animName);
   }
 
   @override
   Widget build(BuildContext context) {
-    return RiveAnimation.asset(
+    return FlareActor(
       widget.assetPath,
-      controllers: [_controller],
+      fit: widget.fit,
+      animation: widget.animName,
     );
   }
 }
